@@ -18,7 +18,7 @@ title: Go Basic
         - time complexity O(n)   
         - space complexity O(n^2)    
             - since each time has to copy the previous string to new space    
-            ![](assets)    
+            ![](/assets)    
     - using strings.Builder.WriteByte   
         - time complexity also O(n)   
             - but its way faster than +=
@@ -26,7 +26,8 @@ title: Go Basic
             ![](/assets/_a)    
             - reason : a bigger byte array assigned for storing the additional characters, it will be allocated and copied to new byte array with double size if the current byte array is full   
             - only until string() is called, there is no string created to store the string form. Just created a 'string type pointer'
-
+   
+            ![](/assets/image_l.png)    
 - compilation   
     ![image.png](/assets/image_1i.png)    
     - only need the executable to run the program so its not need to install interpreter in client machine to run the program   
@@ -57,6 +58,7 @@ const test = timevar.Truncate(time.Hour)
 - Runes   
     - byte : 8bits   
     - rune : 32bits, although in go string its byte array, the number of rune = number of character, and len(string) isnt always equal to number of character. each character cost 1 rune, so it can supports emoji and chinese characters and all other characters   
+    ![image.png](/assets/image_17.png)    
     - Rune vs byte    
         ![image.png](/assets/image_1y.png)    
         - ` r := []rune(word)`  ← expensive operation to convert string to rune slice. cost O(N), N is number of byte. use `for range`  to get rune at index is less expensive.   
@@ -526,7 +528,7 @@ func removeProfanity(message *string) {
     This table now correctly reflects the practical behavior of Go types in function calls, distinguishing between those that act like values and those that act like references.   
 - Package   
     - `package main`  is special that only this is compiled to executable, and it needs `func main()`  as entry point. other packages are all library that no entry point   
-    - All `.go` assets in a single directory must all belong to the same package. If they don't, an error will be thrown by the compiler. This is true for main and library packages alike.   
+    - All `.go` /assets in a single directory must all belong to the same package. If they don't, an error will be thrown by the compiler. This is true for main and library packages alike.   
 - Module   
     - 1 repo   
         - (generally) 1 module   
@@ -679,7 +681,7 @@ func waitForData(logChan chan string) {
     ![image.png](/assets/image_1b.png)    
     - send to nil channel will actually causing panic   
     - read from nil channel will cause dead lock   
-    - [go concurrency more reading](go-concurrency-more-reading.md) i think i need to revise this default more to have more concrete understanding   
+    - [go concurrency more reading](go-concurrency-more-reading.md) i think i need to revise this page more to have more concrete understanding   
     ![image.png](/assets/image_7.png)    
     - pretty good wrap up actually   
 - Mutex   
