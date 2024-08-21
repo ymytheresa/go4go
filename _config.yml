@@ -1,0 +1,21 @@
+title: Go4Go
+description: Go notes - updating constantly.
+theme: jekyll-theme-cayman
+
+
+author: Theresa Yip
+email: ymy.theresa@gmail.com
+
+Social media links:
+github_username:  ymytheresa
+
+# Exclude files from being included in the site:
+show_downloads: true
+exclude:
+  - Gemfile
+  - Gemfile.lock
+  - node_modules
+  - vendor/bundle/
+  - vendor/cache/
+  - vendor/gems/
+  - vendor/ruby/
