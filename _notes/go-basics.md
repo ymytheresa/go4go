@@ -1,5 +1,5 @@
 ---
-layout: page
+layout: default
 title: Go Basic
 ---
 
@@ -681,7 +681,7 @@ func waitForData(logChan chan string) {
     ![image.png](assets/image_1b.png)    
     - send to nil channel will actually causing panic   
     - read from nil channel will cause dead lock   
-    - [go concurrency more reading](go-concurrency-more-reading.md) i think i need to revise this page more to have more concrete understanding   
+    - [go concurrency more reading](go-concurrency-more-reading.md) i think i need to revise this default more to have more concrete understanding   
     ![image.png](assets/image_7.png)    
     - pretty good wrap up actually   
 - Mutex   

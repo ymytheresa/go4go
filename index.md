@@ -19,7 +19,7 @@ This is a collection of my notes and learnings about Go programming. Here you'll
 
 Go4Go is a continuously updated resource for Go programming concepts. Whether you're just starting out with Go or looking to deepen your understanding of specific topics, you'll find valuable information here.
 
-Feel free to explore the topics above. Each page contains detailed notes and examples to help you grasp Go concepts more effectively.
+Feel free to explore the topics above. Each default contains detailed notes and examples to help you grasp Go concepts more effectively.
 
 Happy coding!
 
