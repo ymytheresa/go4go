@@ -23,13 +23,12 @@ title: Go Basic
         - time complexity also O(n)   
             - but its way faster than +=
    
-            ![](assets/_a)    
+            ![](/assets/_a)    
             - reason : a bigger byte array assigned for storing the additional characters, it will be allocated and copied to new byte array with double size if the current byte array is full   
             - only until string() is called, there is no string created to store the string form. Just created a 'string type pointer'
-   
-            ![](assets/image_l.png)    
+
 - compilation   
-    ![image.png](assets/image_1i.png)    
+    ![image.png](/assets/image_1i.png)    
     - only need the executable to run the program so its not need to install interpreter in client machine to run the program   
 - Memory greatly lower than Java   
     1. [Memory](memory.md)    
@@ -58,9 +57,8 @@ const test = timevar.Truncate(time.Hour)
 - Runes   
     - byte : 8bits   
     - rune : 32bits, although in go string its byte array, the number of rune = number of character, and len(string) isnt always equal to number of character. each character cost 1 rune, so it can supports emoji and chinese characters and all other characters   
-    ![image.png](assets/image_17.png)    
     - Rune vs byte    
-        ![image.png](assets/image_1y.png)    
+        ![image.png](/assets/image_1y.png)    
         - ` r := []rune(word)`  ← expensive operation to convert string to rune slice. cost O(N), N is number of byte. use `for range`  to get rune at index is less expensive.   
     - parsing string using for… range, each value is a rune   
    
@@ -222,7 +220,7 @@ func main() {
 ```
 - struct   
     - nested vs embedded    
-        ![image.png](assets/image_d.png)    
+        ![image.png](/assets/image_d.png)    
     - anonymous struct (should use only if its only being used once)   
         - the design intention is to prevent us from reusing a struct definition we never intended to reuse   
     - Receiver : only way to add function for struct that can call by struct.function()   
@@ -232,8 +230,8 @@ func main() {
         - Data alignment refers to storing data at memory addresses divisible by the size of the data type that fits into the word size of cpu [Memory](memory.md)    
             - 32 bits cpu - word size 4 bytes    
             - 64 bits cpu - word size 8 bytes   
-            ![image.png](assets/image_1o.png)    
-            ![image.png](assets/image_1s.png)    
+            ![image.png](/assets/image_1o.png)    
+            ![image.png](/assets/image_1s.png)    
             - Go typically uses 4 bytes alignment boundary with the exception of 64bit type eg int64, and slice   
                 - slice : 8 bytes pointer, 8 bytes length (int64)and 8 bytes capacity(int64)   
                 - if length exceeds int64 will cause compilation time /runtime error    
@@ -325,7 +323,7 @@ type Ordered interface {
 }
 ```
     - ~int the ~ is a tilde operator   
-        ![image.png](assets/image_k.png)    
+        ![image.png](/assets/image_k.png)    
 - Error   
     - as long as struct has Error() string, its implementing error interface   
         - that we can create function func xxx(yy,zz) error {return aa.Error()}   
@@ -335,7 +333,7 @@ var err error := errors.New("error msg")
 ```
     - if `'panic(err)'`is called, then the program crashes and print stack  trace, until it reaches a function that '`defer recover()`' TRULY BAD WAY TO HANDLE ERROR   
         [The Go Programming Language Specification - The Go Programming Language](https://go.dev/ref/spec#Handling_panics)    
-        ![image.png](assets/image_t.png)    
+        ![image.png](/assets/image_t.png)    
     - if want to exit the program, just use `log.Fatal`  to print a message and exit the program   
 - Loop   
     - `for i := 0; i < sth; i++{}`   
@@ -359,7 +357,7 @@ slice = append(slice, slice2...)
             - When a slice needs to grow beyond its current capacity, Go typically doubles the capacity of the slice. This amortized approach ensures that appending to a slice has an average O(1) time complexity.   
             - very interesting resizing mechanism that if use append() once only, the max cap will be allocated with N+1 only   
                 - else if use append(), if its over the previous cap, the cap will be 2X of previous cap   
-                ![image.png](assets/image_22.png)    
+                ![image.png](/assets/image_22.png)    
                 - when its resized then new array is created. this lead to some potential bug if we write code `sliceB := append(sliceA, 10)`    
                     - why?   
                     - if after append its not resized, then sliceB === sliceA (same address)   
@@ -444,10 +442,10 @@ func createMatrix(rows, cols int) [][]int {
 ```
         - Like slices, maps are also passed by reference into functions. This means that when a map is passed into a function we write, we *can* make changes to the original, we don't have a copy.   
         - but slice and array hv different function signature, never be the same   
-    ![image.png](assets/image_b.png)    
+    ![image.png](/assets/image_b.png)    
 - Map   
     - newMap := make(map[string]int)   
-        ![image.png](assets/image_j.png)    
+        ![image.png](/assets/image_j.png)    
     - value can be any type   
     - key can only be types that comparable   
         - boolean, numeric, string, pointer, channel, and interface types, and structs or arrays that contain only those types   
@@ -467,7 +465,7 @@ n := hits[Key{"/ref/spec", "ch"}]
 [continue from here revision](continue-from-here-revision.md)    
 - Pointers   
     - Reference   
-        ![image.png](assets/image_2c.png)    
+        ![image.png](/assets/image_2c.png)    
         - but go auto dereference for struct pointer, unlike simple types that we have to dereference ourselves   
             ```
 func getMessageText(a *Analytics, msg Message){
@@ -495,7 +493,7 @@ func removeProfanity(message *string) {
         - Pointer Receiver   
             - function that can change the attribute's value of the struct object that call that function (without creating new struct object and returning)   
             - pointer receiver is more common than value receiver actually, and we dont hv to create a pointer and assign it with struct object address then finally call the function, go has auto done the address part it for us   
-            ![image.png](assets/image_w.png)    
+            ![image.png](/assets/image_w.png)    
         - Optimization using pointer over copying value?   
             - [Memory](memory.md)  (sidetracked : added point inside that why Go using less memory than Java)   
             - values are stored on stack while pointers are stored on heap, so values having faster accessing speed than pointers unless the value to be copied are so huge. Once the value becomes large enough that copying is the greater problem, it can be worth using a pointer to avoid copying. That value will probably go to the heap, so the gain from avoiding copying needs to be greater than the loss from moving to the heap.   
@@ -537,17 +535,17 @@ func removeProfanity(message *string) {
                     - 1 .go   
             - say this is at root level
 we need to have a `go.mod`  file   
-                ![image.png](assets/image_m.png)    
+                ![image.png](/assets/image_m.png)    
                 - if we want to import a package from    
                     - the module `github.com/google/go-cmp` contains a package in the directory `cmp/`.   
                     - import path is `github.com/google/go-cmp/cmp`   
-        ![image.png](assets/image_a.png)    
+        ![image.png](/assets/image_a.png)    
     - `go install` at the root level   
         - it will install the executable to a global program at machine!!   
-        ![image.png](assets/image_c.png)    
+        ![image.png](/assets/image_c.png)    
         - uninstall by `rm $(which hellogo)`    
     - local different modules   
-        ![image.png](assets/image_r.png)    
+        ![image.png](/assets/image_r.png)    
         - In Go, only identifiers (like function names) that start with a capital letter are exported and can be used outside of their package.   
     - remote package   
         - just import in main.go eg `import tinytime "github.com/wagslane/go-tinytime"`    
@@ -559,7 +557,7 @@ we need to have a `go.mod`  file
 - Concurrency / Channels   
     - add keyword `go`  in front of a function means this function will be executed concurrently   
     - go routine   
-        ![image.png](assets/image_u.png)    
+        ![image.png](/assets/image_u.png)    
         - email sent ← main thread keep running while the go routine running too   
     - go channel : thread safe queue for value assignment.?   
         ```
@@ -633,7 +631,7 @@ func getDBsChannel(numDBs int) (chan struct{}, *int) {
         - ` close(ch)`   
         - can check if a channel is closed and emptied   
         -     
-        ![image.png](assets/image_15.png)    
+        ![image.png](/assets/image_15.png)    
         - sending on a closed channel will cause PANIC! (panic on that main routine / goroutine    
         - Closing isn't necessary. There's nothing wrong with leaving channels open, they'll still be garbage collected if they're unused. You should close channels to indicate explicitly to a receiver that nothing else is going to come across.   
     - `range`  blocking at each iteration if nothing new is there) and will exit only when the channel is closed.   
@@ -675,14 +673,14 @@ func waitForData(logChan chan string) {
 
 ```
         - `time.Tick()`    
-        ![image.png](assets/image_v.png)    
+        ![image.png](/assets/image_v.png)    
         - ticker is like periodically sending current timestamp to a channel   
     - some short points about nil channel   
-    ![image.png](assets/image_1b.png)    
+    ![image.png](/assets/image_1b.png)    
     - send to nil channel will actually causing panic   
     - read from nil channel will cause dead lock   
     - [go concurrency more reading](go-concurrency-more-reading.md) i think i need to revise this default more to have more concrete understanding   
-    ![image.png](assets/image_7.png)    
+    ![image.png](/assets/image_7.png)    
     - pretty good wrap up actually   
 - Mutex   
     - protect a block of code    
@@ -826,8 +824,8 @@ nonP := NonProduct{23}
 es.Sell(nonP) //Compilation error: cannot use nonP (variable of type NonProduct) as Book value in argument to es.Sell
 ```
 - No enums → `= iota`    
-    ![image.png](assets/image_h.png)    
+    ![image.png](/assets/image_h.png)    
     - `iota`  is a pre-declared identifier that represents successive untyped integer constants, starts at 0 in each const block and increments by 1 for each constant declaration. It resets to 0 when a new const block begins   
-    ![image.png](assets/image_y.png)    
+    ![image.png](/assets/image_y.png)    
    
        
