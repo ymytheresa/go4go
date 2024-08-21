@@ -1,3 +1,8 @@
+---
+layout: default
+title: Go Basics
+---
+
 # Go Basics
 
 ## Basic Syntax
