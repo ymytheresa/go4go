@@ -1,6 +1,16 @@
 title: Go4Go
 description: Go notes - updating constantly.
-theme: jekyll-theme-cayman
+# Theme settings
+remote_theme: pages-themes/midnight@v0.2.0
+
+# Build settings
+markdown: kramdown
+
+# Plugins
+plugins:
+  - jekyll-remote-theme
+  - jekyll-feed
+  - jekyll-seo-tag
 
 
 author: Theresa Yip
