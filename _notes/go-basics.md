@@ -65,6 +65,7 @@ const test = timevar.Truncate(time.Hour)
 - byte: 8bits
 - rune: 32bits, although in Go string it's byte array, the number of rune = number of character, and len(string) isn't always equal to number of character. Each character costs 1 rune, so it can support emoji and Chinese characters and all other characters
 
+![iota example](https://ymytheresa.github.io/go4go/assets/image_1y.png)
 ![image.png](/assets/image_1y.png)
 
 - Rune vs byte
