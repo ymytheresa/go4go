@@ -18,7 +18,7 @@ plugins:
 # Social media links
 github_username: ymytheresa
 
-# Custom collection for your markdown files
+# Custom collection for your markdown assets
 collections:
   notes:
     output: true
@@ -35,7 +35,7 @@ defaults:
 # Site settings
 show_downloads: true
 
-# Exclude files from being included in the site:
+# Exclude assets from being included in the site:
 exclude:
   - Gemfile
   - Gemfile.lock
@@ -44,7 +44,6 @@ exclude:
   - vendor/cache/
   - vendor/gems/
   - vendor/ruby/
-  - files/  # Exclude the files directory if you don't want it processed
 
 # Optional: If you want to use a custom domain
 # url: "http://yourdomain.com"
