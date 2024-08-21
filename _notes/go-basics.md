@@ -66,7 +66,6 @@ const test = timevar.Truncate(time.Hour)
 - rune: 32bits, although in Go string it's byte array, the number of rune = number of character, and len(string) isn't always equal to number of character. Each character costs 1 rune, so it can support emoji and Chinese characters and all other characters
 
 ![iota example](https://ymytheresa.github.io/go4go/assets/image_1y.png)
-![image.png](/assets/image_1y.png)
 
 - Rune vs byte
   - `r := []rune(word)` ← expensive operation to convert string to rune slice. Cost O(N), N is number of byte. Use `for range` to get rune at index is less expensive.
@@ -241,7 +240,7 @@ func main() {
 ## Struct
 - Nested vs Embedded
 
-![image.png](/assets/image_d.png)
+![iota example](https://ymytheresa.github.io/go4go/assets/image_d.png)
 
 - Anonymous struct (should use only if it's only being used once)
   - The design intention is to prevent us from reusing a struct definition we never intended to reuse
@@ -253,9 +252,9 @@ func main() {
     - 32 bits CPU - word size 4 bytes
     - 64 bits CPU - word size 8 bytes
 
-![image.png](/assets/image_1o.png)
+![iota example](https://ymytheresa.github.io/go4go/assets/image_1o.png)
 
-![image.png](/assets/image_1s.png)
+![iota example](https://ymytheresa.github.io/go4go/assets/image_1s.png)
 
   - Go typically uses 4 bytes alignment boundary with the exception of 64bit type e.g., int64, and slice
     - slice: 8 bytes pointer, 8 bytes length (int64) and 8 bytes capacity (int64)
@@ -354,7 +353,7 @@ type Ordered interface {
 
 - ~int the ~ is a tilde operator
 
-![image.png](/assets/image_k.png)
+![iota example](https://ymytheresa.github.io/go4go/assets/image_k.png)
 
 ## Error
 - As long as struct has Error() string, it's implementing error interface
@@ -365,7 +364,7 @@ type Ordered interface {
   ```
 - If `panic(err)` is called, then the program crashes and print stack trace, until it reaches a function that `defer recover()` TRULY BAD WAY TO HANDLE ERROR
 
-![image.png](/assets/image_t.png)
+![iota example](https://ymytheresa.github.io/go4go/assets/image_t.png)
 
 - If want to exit the program, just use `log.Fatal` to print a message and exit the program
 
@@ -393,7 +392,7 @@ type Ordered interface {
     - Very interesting resizing mechanism that if use append() once only, the max cap will be allocated with N+1 only
       - Else if use append(), if it's over the previous cap, the cap will be 2X of previous cap
 
-![image.png](/assets/image_22.png)
+![iota example](https://ymytheresa.github.io/go4go/assets/image_22.png)
 
   - When it's resized then new array is created. This leads to some potential bug if we write code `sliceB := append(sliceA, 10)`
     - Why?
@@ -483,12 +482,12 @@ func createMatrix(rows, cols int) [][]int {
 - Like slices, maps are also passed by reference into functions. This means that when a map is passed into a function we write, we *can* make changes to the original, we don't have a copy.
 - But slice and array have different function signatures, never be the same
 
-![image.png](/assets/image_b.png)
+![iota example](https://ymytheresa.github.io/go4go/assets/image_b.png)
 
 ## Map
 - `newMap := make(map[string]int)`
 
-![image.png](/assets/image_j.png)
+![iota example](https://ymytheresa.github.io/go4go/assets/image_j.png)
 
 - Value can be any type
 - Key can only be types that are comparable
@@ -510,7 +509,7 @@ n := hits[Key{"/ref/spec", "ch"}]
 ## Pointers
 - Reference
 
-![image.png](/assets/image_2c.png)
+![iota example](https://ymytheresa.github.io/go4go/assets/image_2c.png)
 
 - But Go auto dereferences for struct pointers, unlike simple types that we have to dereference ourselves
 
@@ -544,7 +543,7 @@ func removeProfanity(message *string) {
   - Function that can change the attribute's value of the struct object that calls that function (without creating new struct object and returning)
   - Pointer receiver is more common than value receiver actually, and we don't have to create a pointer and assign it with struct object address then finally call the function, Go has auto done the address part for us
 
-![image.png](/assets/image_w.png)
+![iota example](https://ymytheresa.github.io/go4go/assets/image_w.png)
 
 - Optimization using pointer over copying value?
   - Values are stored on stack while pointers are stored on heap, so values have faster accessing speed than pointers unless the value to be copied is so huge. Once the value becomes large enough that copying is the greater problem, it can be worth using a pointer to avoid copying. That value will probably go to the heap, so the gain from avoiding copying needs to be greater than the loss from moving to the heap.
@@ -590,23 +589,23 @@ This table now correctly reflects the practical behavior of Go types in function
     - Say this is at root level
 we need to have a `go.mod` file
 
-![image.png](/assets/image_m.png)
+![iota example](https://ymytheresa.github.io/go4go/assets/image_m.png)
 
   - If we want to import a package from
     - the module `github.com/google/go-cmp` contains a package in the directory `cmp/`.
     - import path is `github.com/google/go-cmp/cmp`
 
-![image.png](/assets/image_a.png)
+![iota example](https://ymytheresa.github.io/go4go/assets/image_a.png)
 
 - `go install` at the root level
   - It will install the executable to a global program at machine!!
 
-![image.png](/assets/image_c.png)
+![iota example](https://ymytheresa.github.io/go4go/assets/image_c.png)
 
   - Uninstall by `rm $(which hellogo)`
 - Local different modules
 
-![image.png](/assets/image_r.png)
+![iota example](https://ymytheresa.github.io/go4go/assets/image_r.png)
 
   - In Go, only identifiers (like function names) that start with a capital letter are exported and can be used outside of their package.
 - Remote package
@@ -621,7 +620,7 @@ we need to have a `go.mod` file
 - Add keyword `go` in front of a function means this function will be executed concurrently
 - Go routine
 
-![image.png](/assets/image_u.png)
+![iota example](https://ymytheresa.github.io/go4go/assets/image_u.png)
 
   - email sent ← main thread keep running while the go routine running too
 - Go channel: thread safe queue for value assignment.
@@ -697,7 +696,7 @@ func getDBsChannel(numDBs int) (chan struct{}, *int) {
   - `close(ch)`
   - Can check if a channel is closed and emptied
 
-![image.png](/assets/image_15.png)
+![iota example](https://ymytheresa.github.io/go4go/assets/image_15.png)
 
   - Sending on a closed channel will cause PANIC! (panic on that main routine / goroutine)
   - Closing isn't necessary. There's nothing wrong with leaving channels open, they'll still be garbage collected if they're unused. You should close channels to indicate explicitly to a receiver that nothing else is going to come across.
@@ -741,17 +740,17 @@ func waitForData(logChan chan string) {
 
   - `time.Tick()`
 
-![image.png](/assets/image_v.png)
+![iota example](https://ymytheresa.github.io/go4go/assets/image_v.png)
 
   - Ticker is like periodically sending current timestamp to a channel
 - Some short points about nil channel
 
-![image.png](/assets/image_1b.png)
+![iota example](https://ymytheresa.github.io/go4go/assets/image_1b.png)
 
 - Send to nil channel will actually cause panic
 - Read from nil channel will cause deadlock
 
-![image.png](/assets/image_7.png)
+![iota example](https://ymytheresa.github.io/go4go/assets/image_7.png)
 
 - Pretty good wrap up actually
 
@@ -898,11 +897,11 @@ es.Sell(nonP) //Compilation error: cannot use nonP (variable of type NonProduct)
 
 ## No enums → `= iota`
 
-![image.png](/assets/image_h.png)
+![iota example](https://ymytheresa.github.io/go4go/assets/image_h.png)
 
 `iota` is a pre-declared identifier that represents successive untyped integer constants, starts at 0 in each const block and increments by 1 for each constant declaration. It resets to 0 when a new const block begins.
 
-![image.png](/assets/image_y.png)
+![iota example](https://ymytheresa.github.io/go4go/assets/image_y.png)
 
 ## Generics
 
