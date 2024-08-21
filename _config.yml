@@ -48,3 +48,5 @@ exclude:
 # Optional: If you want to use a custom domain
 # url: "http://yourdomain.com"
 # baseurl: ""
+include:
+  - assets
