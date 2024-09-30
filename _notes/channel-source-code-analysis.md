@@ -1,3 +1,9 @@
+---
+layout: default
+title: Channel Underlying Implementation with Source Code
+---
+
+
 # Channel Underlying Implementation with Source Code
 
 - **Creating Channel - make()**
