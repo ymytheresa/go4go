@@ -12,8 +12,8 @@ title: GO GPM model
    
    
 GPM scheduler model   
-![image.png](files/image1.png)    
-![image.png](files/image_m1.png)    
+![image.png](https://ymytheresa.github.io/go4go/assets/image1.png)    
+![image.png](https://ymytheresa.github.io/go4go/assets/image_m1.png)    
 - Hands Off Mechanism   
     - When a G is being blocked (eg waiting for io response), the G and M is separated from P. P will assign new G and available M or create new M.   
     - Noted that the states are always stored in go runtime internal memory. No data transferred happened.   
@@ -41,13 +41,13 @@ GPM scheduler model
    
    
 Initial M0 and G0   
-![image.png](files/image_u1.png)    
+![image.png](https://ymytheresa.github.io/go4go/assets/image_u1.png)    
 - When program launches, M0 is created to execute initialization operations and launching the first G0. After launching the first G0, M0 functions like any other M   
 - Each time a M is started, the first goroutine created is G0, so each M has its own G0. G0 is solely dedicated to scheduling tasks and doesnt point to any executable function. During scheduling or system called, M switches from any G to G0 and scheduling is performed through G0. M0's G0 is placed in global space.   
-![image.png](files/image_s1.png)    
+![image.png](https://ymytheresa.github.io/go4go/assets/image_s1.png)    
    
    
-![image.png](files/image_e1.png)    
+![image.png](https://ymytheresa.github.io/go4go/assets/image_e1.png)    
  --- 
 ### Scenario 1: G1 Creates G2   
 When Goroutine G1 creates G2, G2 is prioritized and added to the local queue of Processor P1. This prioritization is due to the locality principle, which keeps related tasks close together in memory, making context switching faster and more efficient.   
